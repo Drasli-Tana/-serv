@@ -1,0 +1,6 @@
+GET http://localhost:5000/hello2/Thomas
+Accept: application/json
+
+###
+GET http://127.0.0.1:5000/hello
+Accept: application/json
