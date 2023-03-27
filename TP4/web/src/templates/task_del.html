@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+{% block title %}Suppression d'un utilisateur{% endblock %}
+{% block main %}
+<!-- <form method="POST" action="https://delnondy.alwaysdata.net/devweb/param"> -->
+<form method="POST" action="">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+    <fieldset>
+        <legend>Suppression</legend>
+        <p>
+            Veuillez confirmez la suppression de la tâche <strong>{{ task_id }}</strong>
+        </p>
+        <button type="submit">Supprimer</button>
+        <button  type="button" onclick="window.location.href='{{url_for('home')}}'">Annuler</button>
+    </fieldset>
+</form>
+{% endblock %}
