@@ -1,0 +1,12 @@
+POST http://httpbin.org/uuid
+Content-Type: application/json
+
+{
+  "message": "Hello world!"
+}
+
+###
+GET http://httpbin.org/uuid
+Accept: application/json
+
+###

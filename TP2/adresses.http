@@ -1,0 +1,2 @@
+GET https://api-adresse.data.gouv.fr/search/?q=151+rue+de+la+papeterie+38610
+Accept: application/json
