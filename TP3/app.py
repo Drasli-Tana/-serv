@@ -28,7 +28,7 @@ class SayHello(flask_restx.Resource):
         h = flask.request.headers['Content-Type']
         if h == 'application/json':
             json_data = flask.request.get_json()
-            msg = json_data["message"]
+            msg = json_data.get("message")
             print(msg)
 
         elif h == 'text/plain':
