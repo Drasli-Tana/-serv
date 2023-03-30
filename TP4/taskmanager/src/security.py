@@ -9,10 +9,4 @@ def check_api_key(headers):
 
 
 def check_jwt(right, header):
-    acc_token_dec = jwt.decode(header.get("Authorization").split(" ")[1], options={"verify_signature": False})
-
-
-    CLIENT_ID = "tp4"
-    CLIENT_SECRET = "171da615-dc31-43d7-9c76-5d0f15bb2b4f"
-    session = OAuth2Session(CLIENT_ID, CLIENT_SECRET)
-    token = session.fetch_token( "http://10.1.33.57:8888/auth/realms/r4dc10/protocol/openid-connect/token", username='bob', password='toto')
+    return right in jwt.decode(header.get("Authorization").split(" ")[1], options={"verify_signature": False}).get('resource_access', dict()).get('tp4', dict()).get("roles", list())
