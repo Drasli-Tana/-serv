@@ -1,8 +1,9 @@
 import json
+import os
 
 import requests
 
-URL = "http://127.0.0.1:5000"
+URL = os.environ.get("TASKMANAGER_URL", "http://127.0.0.1:5000")
 API_KEY = "5ac3a5ba0a4b364d6638be6fd1c30eeef26e07ddf72922fcb8f29b30b2973391"
 
 
@@ -24,7 +25,8 @@ def get_tasks():
         ]
 
     """
-    return requests.get(f"{URL}/tasks", headers={"X-API-KEY": API_KEY}).json()
+    r = requests.get(f"{URL}/tasks", headers={"X-API-KEY": API_KEY})
+    return r.json() if r.status_code == 200 else dict()
 
 
 def get_task(task_id):
