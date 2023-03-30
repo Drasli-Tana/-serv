@@ -1,6 +1,8 @@
 import flask
 import flask_restx
 
+import security
+
 TACHES = {
     "tache-1": "Préparer le TP microservices",
     "tache-2": "Préparer l'examen du module microservices"
@@ -19,6 +21,8 @@ def generation_tache_id():
 class Tasks(flask_restx.Resource):
     def get(self):
         """Réponse aux requêtes HTTP GET s'adaptant au `name` fournie dans la requête"""
+        if not security.check_api_key(flask.request.headers):
+            flask_restx.abort(403, "Forbidden")
         return [{"id": tache, "description": TACHES[tache]} for tache in TACHES], 200
 
     def post(self):
@@ -36,9 +40,13 @@ class Tasks(flask_restx.Resource):
 class Task(flask_restx.Resource):
     def get(self, tid):
         """Réponse aux requêtes HTTP GET s'adaptant au `name` fournie dans la requête"""
+        if not security.check_api_key(flask.request.headers):
+            flask_restx.abort(403, message="Forbidden")
+
         if tid not in TACHES:
-            flask_restx.abort(404, message="Tache n'existe pas")
+            flask_restx.abort(404, message="Task not found")
         return {"id": tid, "description": TACHES[tid]}, 200
+
 
     def delete(self, tid):
         if tid not in TACHES:

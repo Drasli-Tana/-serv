@@ -3,6 +3,7 @@ import json
 import requests
 
 URL = "http://127.0.0.1:5000"
+API_KEY = "5ac3a5ba0a4b364d6638be6fd1c30eeef26e07ddf72922fcb8f29b30b2973391"
 
 
 def get_tasks():
@@ -23,7 +24,7 @@ def get_tasks():
         ]
 
     """
-    return requests.get(f"{URL}/tasks").json()
+    return requests.get(f"{URL}/tasks", headers={"X-API-KEY": API_KEY}).json()
 
 
 def get_task(task_id):
@@ -40,7 +41,7 @@ def get_task(task_id):
 
           ou `None` si la tâche n'existe pas
     """
-    r = requests.get(f"{URL}/tasks/{task_id}")
+    r = requests.get(f"{URL}/tasks/{task_id}", headers={"X-API-KEY": API_KEY})
     return r.json() if r.status_code == 200 else None
 
 def delete_task(task_id):
@@ -65,7 +66,7 @@ def update_task(task):
 
     :return: `True` si la tâche a été mise à jour, `False` sinon
     """
-    return requests.put(f"{URL}/tasks/{task['id']}", data=json.dumps(task), headers={"Content-Type": "application/json"}).status_code==200
+    return requests.put(f"{URL}/tasks/{task['id']}", data=json.dumps(task), headers={"Content-Type": "application/json"}).status_code == 200
 
 def add_task(task):
     """
