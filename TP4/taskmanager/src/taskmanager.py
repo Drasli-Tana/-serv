@@ -26,6 +26,8 @@ class Tasks(flask_restx.Resource):
         return [{"id": tache, "description": TACHES[tache]} for tache in TACHES], 200
 
     def post(self):
+        if not security.check_jwt("create", flask.request.headers):
+            flask_restx.abort(403, "Forbidden")
         if flask.request.headers['Content-Type'] == 'application/json':
             tid = generation_tache_id()
             TACHES[tid] = flask.request.get_json().get("description")
@@ -43,12 +45,18 @@ class Task(flask_restx.Resource):
         if not security.check_api_key(flask.request.headers):
             flask_restx.abort(403, message="Forbidden")
 
+        if not security.check_jwt("read", flask.request.headers):
+            flask_restx.abort(403, "Forbidden")
+
         if tid not in TACHES:
             flask_restx.abort(404, message="Task not found")
         return {"id": tid, "description": TACHES[tid]}, 200
 
 
     def delete(self, tid):
+        if not security.check_jwt("delete", flask.request.headers):
+            flask_restx.abort(403, "Forbidden")
+
         if tid not in TACHES:
             flask_restx.abort(404, message="Tache n'existe pas")
 
@@ -56,6 +64,9 @@ class Task(flask_restx.Resource):
         return {"message": "La tâche '<tid>' a été supprimée"}, 200
 
     def put(self, tid):
+        if not security.check_jwt("update", flask.request.headers):
+            flask_restx.abort(403, "Forbidden")
+
         if tid not in TACHES:
             flask_restx.abort(404, "Not found")
 
