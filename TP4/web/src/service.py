@@ -3,7 +3,7 @@ import os
 
 import requests
 
-URL = os.environ.get("TASKMANAGER_URL", "http://127.0.0.1:5000")
+URL = os.environ.get("TASKSMANAGER_URL", "http://127.0.0.1:5000")
 API_KEY = "5ac3a5ba0a4b364d6638be6fd1c30eeef26e07ddf72922fcb8f29b30b2973391"
 
 
