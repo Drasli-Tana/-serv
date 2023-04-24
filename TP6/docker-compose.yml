@@ -26,6 +26,16 @@ services:
     networks:
       - tp6_net
 
+  db:
+    image: postgres:alpine
+    environment:
+      POSTGRES_USER: tp6
+      POSTGRES_PASSWORD: tp6
+      POSTGRES_DB: tp6
+
+    volumes:
+      - ~/hawkwant/TP6/bank.sql:/docker-entrypoint-initdb.d/bank.sql
+
 networks:
     tp6_net:
         driver: bridge
