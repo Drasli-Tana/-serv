@@ -47,6 +47,13 @@ services:
       - 8888:8080
     networks:
       - tp6_net
+    
+  web:
+    build: web/Dockerfile
+    environment:
+      - NATS_HOST: "10.1.33.57"
+    ports:
+      - 8080:8080
 
 networks:
     tp6_net:
