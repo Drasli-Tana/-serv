@@ -49,7 +49,7 @@ services:
       - tp6_net
     
   web:
-    build: web/Dockerfile
+    build: web
     environment:
       NATS_HOST: "10.1.33.57"
     ports:
