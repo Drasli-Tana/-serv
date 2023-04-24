@@ -17,7 +17,6 @@ services:
       - nats_net
 
   nats-client:
-    # 30ha de champs
     image: natsio/nats-box
     stdin_open: true
     tty: true
