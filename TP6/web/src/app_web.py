@@ -27,7 +27,7 @@ def envoi():
         client.connect()
         client.publish(
             subject=f"bank.deposit.{data.get('account')}",
-            payload=json.dumps(data).encode("utf-8"))
+            payload=json.dumps({key: data[key] for key in ["account", "amount"]}).encode("utf-8"))
 
     return flask.redirect(flask.url_for("home"))
 
