@@ -23,6 +23,8 @@ services:
     tty: true
     depends_on:
       - nats-server
+    networks:
+      - tp6_net
 
 networks:
     tp6_net:
