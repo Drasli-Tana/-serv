@@ -54,6 +54,18 @@ services:
       NATS_HOST: "10.1.33.57"
     ports:
       - 8080:5000
+    depends_on:
+      - nats-server
+    networks:
+      - tp6_net
+  
+  backend:
+    build: backend
+    depends_on:
+      - db
+      - nats-server
+    networks:
+      - tp6_net
 
 networks:
     tp6_net:
