@@ -32,9 +32,19 @@ services:
       POSTGRES_USER: tp6
       POSTGRES_PASSWORD: tp6
       POSTGRES_DB: tp6
-
+    ports:
+      - 5432:5432
+    networks:
+      - tp6_net
     volumes:
       - ~/hawkwant/TP6/bank.sql:/docker-entrypoint-initdb.d/bank.sql
+
+  adminer:
+    image: adminer
+    ports:
+      - 8888:8888
+    networks:
+      - tp6_net
 
 networks:
     tp6_net:
