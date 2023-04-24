@@ -16,9 +16,8 @@ def send_chat_group_message(group: str, msg):
             subject = "chat"
         elif group.upper().startswith("BUT"):
             subject = f"chat.{group.upper()}"
-        elif valide: # si group vérifie l'expression régulière
-            (annee, groupe) = valide.groups()
-            subject = f"chat.BUT{annee}.{group.upper()}"
+        elif valide:  # si group vérifie l'expression régulière
+            subject = f"chat.BUT{valide.groups()[0]}.{group.upper()}"
 
         client.publish(subject=subject, payload=msg.encode("utf-8"))
 
