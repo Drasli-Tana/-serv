@@ -51,7 +51,7 @@ services:
   web:
     build: web/Dockerfile
     environment:
-      - NATS_HOST: "10.1.33.57"
+      NATS_HOST: "10.1.33.57"
     ports:
       - 8080:5000
 
