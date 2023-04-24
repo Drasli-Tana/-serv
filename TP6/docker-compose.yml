@@ -42,7 +42,7 @@ services:
   adminer:
     image: adminer
     ports:
-      - 8888:8888
+      - 8888:8080
     networks:
       - tp6_net
 
