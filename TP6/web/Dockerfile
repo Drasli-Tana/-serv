@@ -3,4 +3,5 @@ ENV NATS_HOST '10.1.33.57'
 COPY src /
 RUN ls /
 RUN pip install -r requirements.txt
-ENTRYPOINT "python -u app_web.py"
+ENTRYPOINT [ "ls /" ]
+#ENTRYPOINT "python -u app_web.py"
